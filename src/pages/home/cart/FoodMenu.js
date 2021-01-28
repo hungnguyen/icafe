@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import Loading from "../../../components/Loading";
+import NumberFormat from "react-number-format";
 
 import {
   List,
@@ -151,7 +152,16 @@ function FoodMenu({
               <List className={classes.list}>
                 {getFoodByCat(cat._id).map((food) => (
                   <ListItem key={food._id}>
-                    <ListItemText primary={food.name} />
+                    <ListItemText
+                      primary={food.name}
+                      secondary={
+                        <NumberFormat
+                          value={food.price}
+                          thousandSeparator
+                          displayType="text"
+                        />
+                      }
+                    />
                     <ListItemSecondaryAction>
                       <IconButton
                         edge="end"

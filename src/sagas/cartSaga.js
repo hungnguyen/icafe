@@ -75,9 +75,19 @@ function* removeCartItem(action) {
   }
 }
 
+function* getCount(action) {
+  try {
+    const res = yield call(api.getCount, action.data);
+    yield put(actions.getCountCartSuccess(res));
+  } catch (e) {
+    yield put(actions.addLog(e));
+  }
+}
+
 export default function* cartSaga() {
   yield takeLatest(actionTypes.GET_ALL_CART, getAll);
   yield takeLatest(actionTypes.GET_ONE_CART, getOne);
+  yield takeLatest(actionTypes.GET_COUNT_CART, getCount);
   yield takeEvery(actionTypes.CREATE_CART, create);
   yield takeEvery(actionTypes.UPDATE_CART, update);
   yield takeEvery(actionTypes.DELETE_CART, remove);

@@ -4,6 +4,7 @@ import food from "./food";
 import category from "./category";
 import cart from "./cart";
 import cartFilter from "./cartFilter.js";
+import log from "./log";
 
 const rootReducer = combineReducers({
   table,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   cart,
   category,
   cartFilter,
+  log,
 });
 
 export default rootReducer;

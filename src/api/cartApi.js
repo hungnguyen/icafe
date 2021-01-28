@@ -89,3 +89,14 @@ export function removeCartItem(data) {
       throw e;
     });
 }
+
+export function getCount(data) {
+  return axios
+    .get(`${baseUrl}/count?${queryString.stringify(data)}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((e) => {
+      throw e;
+    });
+}

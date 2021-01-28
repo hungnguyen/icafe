@@ -200,6 +200,14 @@ export const updateFilterCart = (data) => ({
 export const removeFilterCart = () => ({
   type: actionTypes.REMOVE_FILTER_CART,
 });
+export const getCountCart = (data) => ({
+  type: actionTypes.GET_COUNT_CART,
+  data,
+});
+export const getCountCartSuccess = (data) => ({
+  type: actionTypes.GET_COUNT_CART_SUCCESS,
+  data,
+});
 
 //cartitem actions
 export const getAllCartItem = () => ({
@@ -249,5 +257,9 @@ export const selectCartItem = (data) => ({
 //log actions
 export const addLog = (data) => ({
   type: actionTypes.ADD_LOG,
+  data,
+});
+export const openLog = (data) => ({
+  type: actionTypes.OPEN_LOG,
   data,
 });

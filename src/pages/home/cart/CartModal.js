@@ -164,7 +164,7 @@ function CartModal({
         </AppBar>
         <div className={classes.root}>
           <Grid container spacing={2}>
-            <Grid xs={6} item>
+            <Grid xs={8} item>
               <CartDetail />
               <Box pt={1} textAlign="center" className={classes.boxButton}>
                 <Button
@@ -182,7 +182,7 @@ function CartModal({
                 </Button>
               </Box>
             </Grid>
-            <Grid xs={6} item>
+            <Grid xs={4} item>
               <FoodMenu />
             </Grid>
           </Grid>

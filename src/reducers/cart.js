@@ -4,6 +4,7 @@ const initState = {
   loading: false,
   list: [],
   item: {},
+  count: 0,
 };
 
 export default function cart(state = initState, action) {
@@ -47,6 +48,13 @@ export default function cart(state = initState, action) {
       return {
         ...state,
         item: {},
+      };
+
+    case actionTypes.GET_COUNT_CART_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        count: action.data.count,
       };
 
     //cart item actions

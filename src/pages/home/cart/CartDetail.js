@@ -17,7 +17,7 @@ import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    width: "100%",
   },
 });
 
