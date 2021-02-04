@@ -127,13 +127,13 @@ function Master({ cart, getCountCart, log, openLog }) {
               id="menu-appbar"
               anchorEl={anchorEl}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "right",
+                horizontal: "left",
               }}
               open={open}
               onClose={handleClose}

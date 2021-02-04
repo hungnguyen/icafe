@@ -24,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     textAlign: "center",
-    padding: theme.spacing(5),
-    width: 200,
-    height: 200,
+    padding: theme.spacing(14),
+    width: theme.spacing(16),
+    height: theme.spacing(16),
     borderRadius: "50%",
     color: theme.palette.text.secondary,
   },
@@ -131,6 +131,7 @@ function HomePage({
               alignItems="center"
             >
               <Paper
+                square={true}
                 className={clsx(
                   classes.paper,
                   item.using && classes.hightlight
