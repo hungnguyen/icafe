@@ -32,6 +32,7 @@ import TablePaginationActions from "../../../components/TablePaginationActions";
 import TableToolbar from "../../../components/TableToolbar";
 import Loading from "../../../components/Loading";
 import TableModal from "./TableModal";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -46,12 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const columns = [
-  { id: "name", label: "Tên", minWidth: 170 },
-  { id: "floor", label: "Tầng", minWidth: 100 },
-  { id: "status", label: "Trạng thái", minWidth: 100 },
-  { id: "action", label: "", minWidth: 100 },
-];
+
 
 function TablePage({
   table,
@@ -61,6 +57,7 @@ function TablePage({
   updateTable,
   unselectTable,
 }) {
+  const {t} = useTranslation();
   React.useEffect(() => {
     getAllTable();
   }, [getAllTable]);
@@ -70,6 +67,12 @@ function TablePage({
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [open, setOpen] = React.useState(false);
   const [isEdit, setIsEdit] = React.useState(false);
+  const columns = [
+    { id: "name", label: t("name"), minWidth: 170 },
+    { id: "floor", label: t("floor"), minWidth: 100 },
+    { id: "status", label: t("status"), minWidth: 100 },
+    { id: "action", label: "", minWidth: 100 },
+  ];
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, table.list.length - page * rowsPerPage);
@@ -95,7 +98,7 @@ function TablePage({
     setOpen(true);
   };
   const handleDelete = (e, item) => {
-    if (window.confirm(`Bạn có muốn xóa ${item.name}`)) {
+    if (window.confirm(`${t("confirm.delete")} ${item.name}`)) {
       deleteTable(item._id);
     }
   };
@@ -116,14 +119,14 @@ function TablePage({
   };
   return (
     <Paper className={classes.paper}>
-      <TableToolbar title="Bàn">
+      <TableToolbar title={t("table")}>
         <Tooltip title="Refresh">
           <IconButton aria-label="Refresh" onClick={handleRefresh}>
             <Refresh />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Thêm mới">
-          <IconButton aria-label="Thêm mới" onClick={handleAdd}>
+        <Tooltip title={t("add.new")}>
+          <IconButton aria-label={t("add.new")} onClick={handleAdd}>
             <Add />
           </IconButton>
         </Tooltip>
@@ -155,8 +158,8 @@ function TablePage({
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell>{`Tầng ${row.floor}`}</TableCell>
-                <TableCell>{row.using ? "Đang dùng" : ""}</TableCell>
+                <TableCell>{`${t("floor")} ${row.floor}`}</TableCell>
+                <TableCell>{row.using ? t("not.available") : ""}</TableCell>
                 <TableCell>
                   <IconButton
                     size="small"
@@ -172,7 +175,7 @@ function TablePage({
                   </IconButton>
                   <IconButton
                     size="small"
-                    onClick={(e) => handleDelete(e, row._id)}
+                    onClick={(e) => handleDelete(e, row)}
                   >
                     <Delete fontSize="small" />
                   </IconButton>

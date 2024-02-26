@@ -11,6 +11,7 @@ import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import NumberFormat from "react-number-format";
 import { connect } from "react-redux";
 import { updateFood, createFood, getAllCategory } from "../../../actions";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,7 @@ function FoodModal({
   getAllCategory,
   category,
 }) {
+  const {t} = useTranslation();
   const classes = useStyles();
   const init = {
     name: "",
@@ -81,12 +83,12 @@ function FoodModal({
         onClose={onClose}
         aria-labelledby="alert-dialog-title"
       >
-        <DialogTitle id="alert-dialog-title">Thực đơn</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{t("menu")}</DialogTitle>
         <DialogContent>
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               name="name"
-              label="Tên món"
+              label={t("food.name")}
               type="text"
               value={updateObj.name}
               onChange={handleChange}
@@ -96,7 +98,7 @@ function FoodModal({
               value={updateObj.price}
               customInput={TextField}
               thousandSeparator
-              label="Giá"
+              label={t("price")}
               fullWidth
               onValueChange={(values) => {
                 handleChange({
@@ -109,7 +111,7 @@ function FoodModal({
             />
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-helper-label">
-                Danh mục
+                {t("category")}
               </InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
@@ -132,10 +134,10 @@ function FoodModal({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Hủy
+            {t("cancel")}
           </Button>
           <Button onClick={handleSave} color="primary" autoFocus>
-            Lưu
+            {t("save")}
           </Button>
         </DialogActions>
       </Dialog>

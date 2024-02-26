@@ -28,6 +28,7 @@ import Loading from "../../../components/Loading";
 
 import CartRow from "./CartRow";
 import CartFilter from "./CartFilter";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -42,13 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const columns = [
-  { id: "tableName", label: "Bàn", minWidth: 170 },
-  { id: "totalAmount", label: "Tổng tiền", minWidth: 100 },
-  { id: "dateTime", label: "Ngày lập", minWidth: 100 },
-  { id: "completed", label: "Trạng thái", minWidth: 100 },
-  { id: "action", label: "", minWidth: 100 },
-];
+
 
 function FoodPage({
   cart,
@@ -59,10 +54,19 @@ function FoodPage({
   deleteCartItem,
   getAllCartItem,
 }) {
+  const {t} = useTranslation();
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [isFilter, setIsFilter] = React.useState(false);
+
+  const columns = [
+    { id: "tableName", label: t("name"), minWidth: 170 },
+    { id: "totalAmount", label: t("total.amount"), minWidth: 100 },
+    { id: "dateTime", label: t("order.date"), minWidth: 100 },
+    { id: "completed", label: t("status"), minWidth: 100 },
+    { id: "action", label: "", minWidth: 100 },
+  ];
 
   React.useEffect(() => {
     getAllCart(cartFilter);
@@ -105,7 +109,7 @@ function FoodPage({
 
   return (
     <Paper className={classes.paper}>
-      <TableToolbar title="Đơn hàng">
+      <TableToolbar title={t("order")}>
         <Tooltip title="Refresh">
           <IconButton aria-label="Refresh" onClick={handleRefresh}>
             <Refresh />

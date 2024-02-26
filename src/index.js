@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import axios from "axios";
+import "./i18n/config";
 
 axios.defaults.baseURL = "http://localhost:5035/api";
 axios.defaults.headers.post["Content-Type"] = "application/json";

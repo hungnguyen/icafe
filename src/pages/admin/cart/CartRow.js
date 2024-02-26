@@ -13,9 +13,11 @@ import {
 import { Delete, KeyboardArrowUp, KeyboardArrowDown } from "@material-ui/icons";
 import NumberFormat from "react-number-format";
 import Moment from "react-moment";
+import { useTranslation } from "react-i18next";
 
 function CartRow({ row, onDelete }) {
   const [expand, setExpand] = React.useState(false);
+  const {t} = useTranslation();
   return (
     <>
       <TableRow>
@@ -44,7 +46,7 @@ function CartRow({ row, onDelete }) {
           </Moment>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.completed ? "Hoàn tất" : ""}
+          {row.completed ? t("completed") : ""}
         </TableCell>
         <TableCell>
           <IconButton size="small" onClick={(e) => onDelete(e, row)}>
@@ -57,15 +59,15 @@ function CartRow({ row, onDelete }) {
           <Collapse in={expand} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
-                Chi tiết
+                {t("detail")}
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Tên món</TableCell>
-                    <TableCell>Số lượng</TableCell>
-                    <TableCell align="right">Giá</TableCell>
-                    <TableCell align="right">Thành tiền</TableCell>
+                    <TableCell>{t("food.name")}</TableCell>
+                    <TableCell>{t("quantity")}</TableCell>
+                    <TableCell align="right">{t("price")}</TableCell>
+                    <TableCell align="right">{t("amount")}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

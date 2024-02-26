@@ -9,6 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import { connect } from "react-redux";
 import { updateTable, createTable } from "../../../actions";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ function TableModal({
   createTable,
   isEdit,
 }) {
+  const {t} = useTranslation();
   const classes = useStyles();
   const init = {
     name: "",
@@ -70,12 +72,12 @@ function TableModal({
         onClose={onClose}
         aria-labelledby="alert-dialog-title"
       >
-        <DialogTitle id="alert-dialog-title">Bàn</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{t("table")}</DialogTitle>
         <DialogContent>
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               name="name"
-              label="Tên bàn"
+              label={t("name")}
               type="text"
               value={updateObj.name}
               onChange={handleChange}
@@ -83,7 +85,7 @@ function TableModal({
             />
             <TextField
               name="floor"
-              label="Tầng"
+              label={t("floor")}
               type="number"
               value={updateObj.floor}
               onChange={handleChange}
@@ -93,10 +95,10 @@ function TableModal({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Hủy
+            {t("cancel")}
           </Button>
           <Button onClick={handleSave} color="primary" autoFocus>
-            Lưu
+            {t("save")}
           </Button>
         </DialogActions>
       </Dialog>

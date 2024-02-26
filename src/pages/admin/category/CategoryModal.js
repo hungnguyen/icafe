@@ -9,6 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import { connect } from "react-redux";
 import { updateCategory, createCategory } from "../../../actions";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ function CategoryModal({
   createCategory,
   isEdit,
 }) {
+  const {t} = useTranslation();
   const classes = useStyles();
   const init = {
     name: "",
@@ -70,12 +72,12 @@ function CategoryModal({
         onClose={onClose}
         aria-labelledby="alert-dialog-title"
       >
-        <DialogTitle id="alert-dialog-title">Danh mục</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{t("category")}</DialogTitle>
         <DialogContent>
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               name="name"
-              label="Tên danh mục"
+              label={t("name")}
               type="text"
               value={updateObj.name}
               onChange={handleChange}
@@ -85,10 +87,10 @@ function CategoryModal({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Hủy
+            {t("cancel")}
           </Button>
           <Button onClick={handleSave} color="primary" autoFocus>
-            Lưu
+            {t("save")}
           </Button>
         </DialogActions>
       </Dialog>

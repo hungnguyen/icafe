@@ -14,6 +14,7 @@ import { IconButton, Typography } from "@material-ui/core";
 import { deleteCartItem } from "../../../actions";
 
 import NumberFormat from "react-number-format";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles({
   table: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 
 function CartDetail({ cart, cartItem, deleteCartItem }) {
   const classes = useStyles();
-
+  const {t} = useTranslation();
   //const [cartItems, setCartItems] = React.useState([]);
   //const [totalAmount, setTotalAmount] = React.useState(0);
 
@@ -47,7 +48,7 @@ function CartDetail({ cart, cartItem, deleteCartItem }) {
   // }, [cartItems]);
 
   const handleDelete = (e, item) => {
-    if (window.confirm(`Bạn có muốn xóa ${item.foodName} khỏi đơn hàng?`)) {
+    if (window.confirm(`${t("confirm.delete")} ${item.foodName}`)) {
       deleteCartItem({
         id: cart._id,
         itemId: item._id,
@@ -60,9 +61,9 @@ function CartDetail({ cart, cartItem, deleteCartItem }) {
       <Table className={classes.table} aria-label="spanning table">
         <TableHead>
           <TableRow>
-            <TableCell>Tên món</TableCell>
-            <TableCell>Số lượng</TableCell>
-            <TableCell align="right">Giá (VND)</TableCell>
+            <TableCell>{t("food.name")}</TableCell>
+            <TableCell>{t("quantity")}</TableCell>
+            <TableCell align="right">{t("price")} (VND)</TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableHead>
@@ -94,7 +95,7 @@ function CartDetail({ cart, cartItem, deleteCartItem }) {
 
           <TableRow>
             <TableCell colSpan="2">
-              <Typography variant="h4">Tổng tiền</Typography>
+              <Typography variant="h4">{t("total.amount")}</Typography>
             </TableCell>
             <TableCell align="right">
               <Typography variant="h4">

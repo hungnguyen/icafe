@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { updateFilterCart, removeFilterCart } from "../../../actions";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,6 +31,7 @@ function CartFilter({
   removeFilterCart,
   onClose,
 }) {
+  const {t} = useTranslation();
   const classes = useStyles();
   const [newFilter, setNewFilter] = React.useState(cartFilter);
   const handleChange = (e) => {
@@ -46,11 +48,11 @@ function CartFilter({
   };
   return (
     <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">Lọc đơn hàng</DialogTitle>
+      <DialogTitle id="form-dialog-title">{t("order.filter")}</DialogTitle>
       <DialogContent>
         <TextField
           name="date"
-          label="Chọn ngày"
+          label={t("select.date")}
           type="date"
           value={newFilter.date}
           onChange={handleChange}

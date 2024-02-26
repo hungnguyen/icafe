@@ -23,6 +23,7 @@ import {
   deleteCart,
   deleteCartItem,
 } from "../../../actions";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +61,7 @@ function CartModal({
   deleteCart,
   deleteCartItem,
 }) {
+  const {t} = useTranslation();
   const classes = useStyles();
 
   const [isChange, setIsChange] = React.useState(false);
@@ -158,7 +160,7 @@ function CartModal({
               {table.item?.name}
             </Typography>
             <Button autoFocus color="inherit" onClick={onUpdate}>
-              Lưu
+              {t("save")}
             </Button>
           </Toolbar>
         </AppBar>
@@ -172,13 +174,13 @@ function CartModal({
                   onClick={handleComplete}
                   color="primary"
                 >
-                  Đã thanh toán
+                  {t("paid")}
                 </Button>
                 <Button variant="contained" onClick={handleCancel}>
-                  Khách hủy
+                  {t("customer.cancel")}
                 </Button>
                 <Button variant="contained" onClick={handleChange}>
-                  Khách chuyển bàn
+                  {t("customer.move.table")}
                 </Button>
               </Box>
             </Grid>

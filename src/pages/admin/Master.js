@@ -34,6 +34,7 @@ import ViewLog from "../../components/ViewLog";
 
 import { getCountCart, openLog } from "../../actions";
 import { connect } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const drawerWidth = 240;
 
@@ -68,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Master({ cart, getCountCart, log, openLog }) {
+  const {t} = useTranslation();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [countUnreadLog, setCountUnreadLog] = React.useState(0);
@@ -161,7 +163,7 @@ function Master({ cart, getCountCart, log, openLog }) {
                   <Dashboard />
                 </ListItemIcon>
                 <NavLink to="/admin/" className={classes.link}>
-                  <ListItemText primary="Thống kê" />
+                  <ListItemText primary={t("dashboard")} />
                 </NavLink>
               </ListItem>
             </List>
@@ -172,7 +174,7 @@ function Master({ cart, getCountCart, log, openLog }) {
                   <TableChart />
                 </ListItemIcon>
                 <NavLink to="/admin/table" className={classes.link}>
-                  <ListItemText primary="Bàn" />
+                  <ListItemText primary={t("table")} />
                 </NavLink>
               </ListItem>
               <ListItem button>
@@ -180,7 +182,7 @@ function Master({ cart, getCountCart, log, openLog }) {
                   <LocalCafe />
                 </ListItemIcon>
                 <NavLink to="/admin/food" className={classes.link}>
-                  <ListItemText primary="Thực đơn" />
+                  <ListItemText primary={t("menu")} />
                 </NavLink>
               </ListItem>
               <ListItem button>
@@ -188,7 +190,7 @@ function Master({ cart, getCountCart, log, openLog }) {
                   <Category />
                 </ListItemIcon>
                 <NavLink to="/admin/category" className={classes.link}>
-                  <ListItemText primary="Danh mục" />
+                  <ListItemText primary={t("category")} />
                 </NavLink>
               </ListItem>
             </List>
@@ -205,7 +207,7 @@ function Master({ cart, getCountCart, log, openLog }) {
                   </Badge>
                 </ListItemIcon>
                 <NavLink to="/admin/cart" className={classes.link}>
-                  <ListItemText primary="Đơn hàng" />
+                  <ListItemText primary={t("order")} />
                 </NavLink>
               </ListItem>
             </List>

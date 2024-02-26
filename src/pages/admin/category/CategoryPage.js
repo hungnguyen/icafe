@@ -25,6 +25,7 @@ import TablePaginationActions from "../../../components/TablePaginationActions";
 import TableToolbar from "../../../components/TableToolbar";
 import Loading from "../../../components/Loading";
 import CategoryModal from "./CategoryModal";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -39,11 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const columns = [
-  { id: "name", label: "Tên", minWidth: 170 },
 
-  { id: "action", label: "", minWidth: 100 },
-];
 
 function CategoryPage({
   category,
@@ -52,6 +49,7 @@ function CategoryPage({
   deleteCategory,
   unselectCategory,
 }) {
+  const {t} = useTranslation();
   React.useEffect(() => {
     getAllCategory();
   }, [getAllCategory]);
@@ -61,6 +59,12 @@ function CategoryPage({
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [open, setOpen] = React.useState(false);
   const [isEdit, setIsEdit] = React.useState(false);
+
+  const columns = [
+    { id: "name", label: t("name"), minWidth: 170 },
+  
+    { id: "action", label: "", minWidth: 100 },
+  ];
 
   const emptyRows =
     rowsPerPage -
@@ -87,7 +91,7 @@ function CategoryPage({
     setOpen(true);
   };
   const handleDelete = (e, item) => {
-    if (window.confirm(`Bạn có muốn xóa ${item.name}`)) {
+    if (window.confirm(`${t("confirm.delete")} ${item.name}`)) {
       deleteCategory(item._id);
     }
   };
@@ -96,9 +100,9 @@ function CategoryPage({
   };
   return (
     <Paper className={classes.paper}>
-      <TableToolbar title="Danh mục">
-        <Tooltip title="Thêm mới">
-          <IconButton aria-label="Thêm mới" onClick={handleAdd}>
+      <TableToolbar title={t("category")}>
+        <Tooltip title={t("add.new")}>
+          <IconButton aria-label={t("add.new")} onClick={handleAdd}>
             <Add />
           </IconButton>
         </Tooltip>
